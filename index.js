@@ -234,7 +234,7 @@ class CustomCrop extends Component {
                         <View
                             style={[
                                 s(this.props).handlerRound,
-                                { left: 50, top: 50 },
+                                { left: 55, top: 55 },
                             ]}
                         />
                         <View
@@ -261,7 +261,7 @@ class CustomCrop extends Component {
                             <View
                                 style={[
                                     s(this.props).handlerRound,
-                                    { left: 51, bottom: 51 },
+                                    { left: 55, bottom: 55 },
                                 ]}
                             />
                             <View
@@ -287,7 +287,7 @@ class CustomCrop extends Component {
                             <View
                                 style={[
                                     s(this.props).handlerRound,
-                                    { right: 47, top: 50 },
+                                    { right:55, top: 55},
                                 ]}
                             />
                             <View
@@ -314,7 +314,7 @@ class CustomCrop extends Component {
                         <View
                             style={[
                                 s(this.props).handlerRound,
-                                { right: 47, bottom: 53 },
+                                { right: 55, bottom: 55 },
                             ]}
                         />
                         <View
@@ -343,17 +343,17 @@ const s = (props) => ({
         position: 'absolute',
         height: 29.6,
         borderRadius: 100,
-        backgroundColor: props.handlerColor || 'blue',
+        backgroundColor: "'rgba(52, 52, 52, 0)'",
         zIndex: 9999,
         borderWidth: 2,
-        borderColor: props.borderColor || 'blue'
+        borderColor:"#1FD5B9"
     },
     handlerRoundOuter: {
-        width: 70.2,
+        width:20,
         position: 'absolute',
-        height: 70.2,
-        borderRadius: 150,
-        backgroundColor: props.handlerOuterColor || 'blue',
+        // height: 30,
+        borderRadius: 50,
+        backgroundColor: props.handlerOuterColor || 'black',
         zIndex: 9998
     },
     image: {
