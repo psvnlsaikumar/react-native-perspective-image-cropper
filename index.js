@@ -131,15 +131,15 @@ class CustomCrop extends Component {
 
     crop() {
         const coordinates = {
-            topLeft: this.viewCoordinatesToImageCoordinates(this.state.topLeft),
+            topLeft: this.viewCoordinatesToImageCoordinates(this.state.topRight),
             topRight: this.viewCoordinatesToImageCoordinates(
-                this.state.topRight,
+                this.state.bottomRight,
             ),
             bottomLeft: this.viewCoordinatesToImageCoordinates(
-                this.state.bottomLeft,
+                this.state.topLeft,
             ),
             bottomRight: this.viewCoordinatesToImageCoordinates(
-                this.state.bottomRight,
+                this.state.bottomLeft,
             ),
             height: this.state.height,
             width: this.state.width,
@@ -287,7 +287,7 @@ class CustomCrop extends Component {
                             <View
                                 style={[
                                     s(this.props).handlerRound,
-                                    { right:55, top: 55},
+                                    { right: 55, top: 55 },
                                 ]}
                             />
                             <View
@@ -346,10 +346,10 @@ const s = (props) => ({
         backgroundColor: "'rgba(52, 52, 52, 0)'",
         zIndex: 9999,
         borderWidth: 2,
-        borderColor:"#1FD5B9"
+        borderColor: "#1FD5B9"
     },
     handlerRoundOuter: {
-        width:20,
+        width: 20,
         position: 'absolute',
         // height: 30,
         borderRadius: 50,
