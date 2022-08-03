@@ -14,6 +14,7 @@ import Svg, { Polygon } from 'react-native-svg';
 const AnimatedPolygon = Animated.createAnimatedComponent(Polygon);
 
 class CustomCrop extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -24,7 +25,8 @@ class CustomCrop extends Component {
             width: props.width,
             image: props.initialImage,
             moving: false,
-            screenRatio: Dimensions.get('screen').height / Dimensions.get('screen').width
+            screenRatio: Dimensions.get('screen').height / Dimensions.get('screen').width,
+            shouldRotate: props.shouldRotate
         };
 
         this.state = {
@@ -130,7 +132,7 @@ class CustomCrop extends Component {
     }
 
     crop() {
-        const coordinates = {
+        let coordinates = {
             topLeft: this.viewCoordinatesToImageCoordinates(this.state.topRight),
             topRight: this.viewCoordinatesToImageCoordinates(
                 this.state.bottomRight,
@@ -144,6 +146,27 @@ class CustomCrop extends Component {
             height: this.state.height,
             width: this.state.width,
         };
+
+        if(!this.state.shouldRotate) {
+                coordinates = {
+                            topLeft: this.viewCoordinatesToImageCoordinates(this.state.topLeft),
+                            topRight: this.viewCoordinatesToImageCoordinates(
+                                this.state.topRight,
+                            ),
+                            bottomLeft: this.viewCoordinatesToImageCoordinates(
+                                this.state.bottomLeft,
+                            ),
+                            bottomRight: this.viewCoordinatesToImageCoordinates(
+                                this.state.bottomRight,
+                            ),
+                            height: this.state.height,
+                            width: this.state.width,
+                        };
+
+        }
+
+        
+
         NativeModules.CustomCropManager.crop(
             coordinates,
             this.state.image,
@@ -204,7 +227,7 @@ class CustomCrop extends Component {
                         resizeMode="contain"
                         source={{ uri: this.state.image }}
                     />
-                    <Svg
+                    {/* <Svg
                         height={this.state.viewHeight}
                         width={this.state.viewWidth}
                         style={{ position: 'absolute', left: 0, top: 0 }}
@@ -217,8 +240,8 @@ class CustomCrop extends Component {
                             points={this.state.overlayPositions}
                             strokeWidth={this.props.overlayStrokeWidth || 3}
                         />
-                    </Svg>
-                    <Animated.View
+                    </Svg> */}
+                    {/* <Animated.View
                         {...this.panResponderTopLeft.panHandlers}
                         style={[
                             this.state.topLeft.getLayout(),
@@ -323,7 +346,7 @@ class CustomCrop extends Component {
                                 { right: 27, bottom: 33 },
                             ]}
                         />
-                    </Animated.View>
+                    </Animated.View> */}
                 </View>
             </View>
         );
